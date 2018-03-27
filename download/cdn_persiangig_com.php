@@ -1,12 +1,17 @@
 <?php
+
 if (!defined('RAPIDLEECH')) {
-	require_once('index.html');
-	exit;
+    require_once 'index.html';
+    exit;
 }
-class cdn_persiangig_com extends DownloadClass {
-	public function Download($link) {
+class cdn_persiangig_com extends DownloadClass
+{
+    public function Download($link)
+    {
         $page = $this->GetPage($link);
-        if (!preg_match('/<h1 class="title pull-right">(.*?)<\/h1>/', $page, $filename)) html_error('File not found!');
+        if (!preg_match('/<h1 class="title pull-right">(.*?)<\/h1>/', $page, $filename)) {
+            html_error('File not found!');
+        }
         preg_match('/https?:\/\/cdn\.persiangig\.com\/download\/(.*?)\/(.*?)$/', $link, $info);
         $id = $info[1];
         $name = str_replace('/dl', '', $info[2]);
