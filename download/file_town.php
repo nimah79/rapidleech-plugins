@@ -1,12 +1,17 @@
 <?php
+
 if (!defined('RAPIDLEECH')) {
-	require_once('index.html');
-	exit;
+    require_once 'index.html';
+    exit;
 }
-class file_town extends DownloadClass {
-	public function Download($link) {
+class file_town extends DownloadClass
+{
+    public function Download($link)
+    {
         $page = $this->GetPage($link);
-        if (!preg_match('/<b>Filename:<\/b> (.*?)<br>/', $page, $filename)) html_error('File not found!');
+        if (!preg_match('/<b>Filename:<\/b> (.*?)<br>/', $page, $filename)) {
+            html_error('File not found!');
+        }
         $filename = $filename[1];
         preg_match('/href="\.\.\/uploads\/(.*?)"/', $page, $dlink);
         $dlink = $dlink[1];

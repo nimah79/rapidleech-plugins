@@ -1,10 +1,13 @@
 <?php
+
 if (!defined('RAPIDLEECH')) {
-	require_once('index.html');
-	exit;
+    require_once 'index.html';
+    exit;
 }
-class transfer_sh extends DownloadClass {
-	public function Download($link) {
+class transfer_sh extends DownloadClass
+{
+    public function Download($link)
+    {
         $page = $this->GetPage($link);
         $filename = parse_url($link);
         $filename = basename($filename['path']);
