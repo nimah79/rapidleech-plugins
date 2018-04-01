@@ -1,13 +1,18 @@
 <?php
+
 if (!defined('RAPIDLEECH')) {
-	require_once('index.html');
-	exit;
+    require_once 'index.html';
+    exit;
 }
-class ufile_io extends DownloadClass {
-	public function Download($link) {
+class ufile_io extends DownloadClass
+{
+    public function Download($link)
+    {
         $page = $this->GetPage($link);
         $cookie = GetCookies($page);
-        if (!preg_match('/<div class="details">\n<h3>(.*?)<\/h3>/', $page, $filename)) html_error('File not found!');
+        if (!preg_match('/<div class="details">\n<h3>(.*?)<\/h3>/', $page, $filename)) {
+            html_error('File not found!');
+        }
         $filename = $filename[1];
         preg_match('/http?s:\/\/ufile\.io\/(.*?)$/', $link, $dlink);
         $dlink = $dlink[1];

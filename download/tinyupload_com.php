@@ -1,12 +1,17 @@
 <?php
+
 if (!defined('RAPIDLEECH')) {
-	require_once('index.html');
-	exit;
+    require_once 'index.html';
+    exit;
 }
-class tinyupload_com extends DownloadClass {
-	public function Download($link) {
+class tinyupload_com extends DownloadClass
+{
+    public function Download($link)
+    {
         $page = $this->GetPage($link);
-        if (!preg_match('/<br \/><a href="(.*?)"><b>(.*?)<\/b><\/a>/', $page, $info)) html_error('File not found!');
+        if (!preg_match('/<br \/><a href="(.*?)"><b>(.*?)<\/b><\/a>/', $page, $info)) {
+            html_error('File not found!');
+        }
         $dlink = $info[1];
         preg_match('/(.*?)index\.php.*/', $link, $domain);
         $domain = $domain[1];
