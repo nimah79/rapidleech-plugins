@@ -14,7 +14,7 @@ class sourceforge_net extends DownloadClass
             html_error('Can\'t find sourceforge redirect link!');
         }
         $temp = html_entity_decode(urldecode(trim($tmp[1])), ENT_QUOTES, 'UTF-8');
-        preg_match('/http?s:\/\/downloads(.*?)\?r/', $temp, $t1);
+        preg_match('/https?:\/\/downloads(.*?)\?r/', $temp, $t1);
         $t1 = $t1[1];
         preg_match('/use_mirror=(.*?)$/', $temp, $t2);
         $t2 = $t2[1];
