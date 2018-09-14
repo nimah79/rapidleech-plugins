@@ -7,7 +7,7 @@ if (version_compare(PHP_VERSION, '5.5', '<')) {
 }
 
 $ch = curl_init('https://bayfiles.com/api/upload');
-curl_setopt($ch, CURLOPT_POSTFIELDS, array('file' => new CURLFile($lfile)));
+curl_setopt($ch, CURLOPT_POSTFIELDS, ['file' => new CURLFile($lfile)]);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -16,7 +16,7 @@ curl_close($ch);
 
 $result = json_decode($result, true);
 
-if(!isset($result['data']['file']['url']['full'])) {
+if (!isset($result['data']['file']['url']['full'])) {
     html_error('Upload failed!');
 }
 
