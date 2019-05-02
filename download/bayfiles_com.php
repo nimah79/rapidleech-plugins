@@ -10,10 +10,10 @@ class bayfiles_com extends DownloadClass
     public function Download($link)
     {
         $page = $this->GetPage($link);
-        if (!preg_match('/<a type="button" id="download-url" class="btn btn-primary btn-block" href="(.*?)">/', $page, $download_link)) {
+        if (!preg_match_all('/href="(.*?)"/', $page, $download_link)) {
             html_error('File not found!');
         }
-        $this->RedirectDownload($download_link[1], 0, 0, 0, $link);
+        $this->RedirectDownload($download_link[1][14], 0, 0, 0, $link);
     }
 }
 
