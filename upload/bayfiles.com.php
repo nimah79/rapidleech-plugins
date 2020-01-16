@@ -16,7 +16,7 @@ $pfile = $pfile[1];
 
 $result = json_decode($pfile, true);
 
-if(!isset($result['data']['file']['url']['full'])) {
+if (!isset($result['data']['file']['url']['full'])) {
     html_error('Upload failed!');
 }
 
