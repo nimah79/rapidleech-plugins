@@ -6,20 +6,21 @@ if (version_compare(PHP_VERSION, '5.5', '<')) {
     html_error('You should have PHP 5.5 or higher.');
 }
 
-$ch = curl_init('https://bayfiles.com/api/upload');
-curl_setopt($ch, CURLOPT_POSTFIELDS, ['file' => new CURLFile($lfile)]);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-$result = curl_exec($ch);
-curl_close($ch);
+echo "<table style='width:600px;margin:auto;'>\n<tr><td align='center'>";
 
-$result = json_decode($result, true);
+$url = parse_url('https://api.bayfiles.com/upload');
+$pfile = upfile($url['host'], 0, $url['path'], 0, 0, 0, $lfile, $lname, 'file');
+is_page($pfile);
+preg_match('/({.*})/', $pfile, $pfile);
+$pfile = $pfile[1];
 
-if (!isset($result['data']['file']['url']['full'])) {
+$result = json_decode($pfile, true);
+
+if(!isset($result['data']['file']['url']['full'])) {
     html_error('Upload failed!');
 }
 
 $download_link = $result['data']['file']['url']['full'];
 
 // [28-08-2018] - Written by NiamH79
+// [16-01-2020] - Added progress bar by NiamH79
