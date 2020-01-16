@@ -30,7 +30,7 @@ $pfile = upfile($url['host'], 0, $url['path'].($url['query'] ? '?'.$url['query']
     'tabs'                    => 'on',
 ], $lfile, $lname, 'file0');
 is_page($pfile);
-preg_match('/({.*?})/', $pfile, $response);
+preg_match('/({.*})/', $pfile, $response);
 $response = json_decode($response[1], true);
 $ch = curl_init('https://multifilemirror.com/result/'.$response['code']);
 curl_setopt_array($ch, [
