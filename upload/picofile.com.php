@@ -34,6 +34,7 @@ if (!isset($result['fileId'])) {
     html_error('Upload failed!');
 }
 
-$download_link = 'http://'.$result['server'].'.picofile.com/file/'.$result['fileId'].'/'.$result['name'].'.'.$result['extension'].'.html';
+$download_link = 'http://'.$result['server'].'.picofile.com/file/'.$result['fileId'].'/'.preg_replace('/[^\x{00C0}-\x{FFFF}a-zA-Z0-9]+/ui', '_', $result['name']).'.'.$result['extension'].'.html';
 
 // [14-01-2020] - Written by NiamH79
+// [16-01-2020] - Fixed by NiamH79
