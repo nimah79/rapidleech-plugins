@@ -22,13 +22,13 @@ preg_match('/upload_id=(.*)/', $action, $upload_id);
 $upload_id = $upload_id[1];
 $url = parse_url($action);
 $pfile = upfile($url['host'], 0, $url['path'].($url['query'] ? '?'.$url['query'] : ''), 0, 0, [
-        'u_hash' => '',
-        'remote' => '0',
-        'upload_id' => $upload_id,
-        'fileuploader-list-file0' => json_encode([['file' => '0:/' . $lname]]),
-        'filepass' => '',
-        'tabs' => 'on',
-    ], $lfile, $lname, 'file0');
+    'u_hash'                  => '',
+    'remote'                  => '0',
+    'upload_id'               => $upload_id,
+    'fileuploader-list-file0' => json_encode([['file' => '0:/'.$lname]]),
+    'filepass'                => '',
+    'tabs'                    => 'on',
+], $lfile, $lname, 'file0');
 is_page($pfile);
 preg_match('/({.*?})/', $pfile, $response);
 $response = json_decode($response[1], true);
