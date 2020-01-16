@@ -19,9 +19,9 @@ if ($response['Result'] != 'success') {
 $ch = curl_init('https://parsaspace.com/upload/getlink');
 curl_setopt_array($ch, [
     CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_POST => true,
-    CURLOPT_POSTFIELDS => json_encode(['fileid' => $response['FileId']]),
-    CURLOPT_HTTPHEADER => ['Content-Type: application/json']
+    CURLOPT_POST           => true,
+    CURLOPT_POSTFIELDS     => json_encode(['fileid' => $response['FileId']]),
+    CURLOPT_HTTPHEADER     => ['Content-Type: application/json'],
 ]);
 $result = curl_exec($ch);
 curl_close($ch);
