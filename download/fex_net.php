@@ -1,12 +1,14 @@
 <?php
 
 if (!defined('RAPIDLEECH')) {
-    require_once('index.html');
+    require_once 'index.html';
     exit;
 }
 
-class fex_net extends DownloadClass {
-    public function Download($link) {
+class fex_net extends DownloadClass
+{
+    public function Download($link)
+    {
         if (!preg_match('/\/s\/(.*)$/', $link, $slug)) {
             html_error('Invalid URL');
         }
