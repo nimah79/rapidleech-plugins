@@ -21,7 +21,7 @@ preg_match('/uploadServers = "(.*?)"/', $main, $servers);
 $servers = explode(',', $servers[1]);
 $server = $servers[array_rand($servers)];
 $url = parse_url('http://'.$server.'.picofile.com/file/upload'.$guid.'9211?uploadkey='.$guid.'_'.$file_id);
-$pfile = upfile($url['host'], 0, $url['path'].($url['query'] ? '?'.$url['query'] : ''), 0, 0, ['filename' => $lname], $lfile, $lname, 'fileupload');
+$pfile = upfile($url['host'], 0, $url['path'].($url['query'] ? '?'.$url['query'] : ''), 0, 0, ['filename' => $lname], $lfile, $lname, 'fileupload', '', 0, 0, 0, 'https');
 is_page($pfile);
 curl_setopt_array($ch, [
     CURLOPT_URL => 'http://'.$server.'.picofile.com/file/fileuploadinfo'.$guid.'4104?uploadkey='.$guid.'_'.$file_id,
