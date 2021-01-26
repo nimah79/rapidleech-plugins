@@ -3,7 +3,6 @@
 $upload_acc['picofile_com']['user'] = ''; // Set your username
 $upload_acc['picofile_com']['pass'] = ''; // Set your password
 
-
 if ($upload_acc['picofile_com']['user'] && $upload_acc['picofile_com']['pass']) {
     $_REQUEST['up_login'] = $upload_acc['picofile_com']['user'];
     $_REQUEST['up_pass'] = $upload_acc['picofile_com']['pass'];
@@ -30,15 +29,15 @@ if (empty($_REQUEST['action']) || $_REQUEST['action'] != 'FORM') {
         $_REQUEST['up_pass'] = decrypt(urldecode($_REQUEST['up_pass']));
         unset($_REQUEST['A_encrypted']);
     }
-    $cookie_filepath = __DIR__ . '/picofile_cookie_'.md5(random_bytes(8)).'_'.time();
+    $cookie_filepath = __DIR__.'/picofile_cookie_'.md5(random_bytes(8)).'_'.time();
     $ch = curl_init('https://www.blogsky.com/login?service=picofile.com&returnurl=https://www.picofile.com/account/logon');
     curl_setopt_array($ch, [
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_FOLLOWLOCATION => true,
         CURLOPT_SSL_VERIFYPEER => false,
         CURLOPT_SSL_VERIFYHOST => false,
-        CURLOPT_COOKIEFILE => $cookie_filepath,
-        CURLOPT_COOKIEJAR => $cookie_filepath
+        CURLOPT_COOKIEFILE     => $cookie_filepath,
+        CURLOPT_COOKIEJAR      => $cookie_filepath,
     ]);
     $response = curl_exec($ch);
     curl_close($ch);
@@ -50,15 +49,15 @@ if (empty($_REQUEST['action']) || $_REQUEST['action'] != 'FORM') {
         CURLOPT_FOLLOWLOCATION => true,
         CURLOPT_SSL_VERIFYPEER => false,
         CURLOPT_SSL_VERIFYHOST => false,
-        CURLOPT_COOKIEFILE => $cookie_filepath,
-        CURLOPT_COOKIEJAR => $cookie_filepath,
-        CURLOPT_POST => true,
-        CURLOPT_POSTFIELDS => [
+        CURLOPT_COOKIEFILE     => $cookie_filepath,
+        CURLOPT_COOKIEJAR      => $cookie_filepath,
+        CURLOPT_POST           => true,
+        CURLOPT_POSTFIELDS     => [
             '__RequestVerificationToken' => $token,
-            'UserName' => $_REQUEST['up_login'],
-            'Password' => $_REQUEST['up_pass'],
-            'Action' => 'ورود'
-        ]
+            'UserName'                   => $_REQUEST['up_login'],
+            'Password'                   => $_REQUEST['up_pass'],
+            'Action'                     => 'ورود',
+        ],
     ]);
     $response = curl_exec($ch);
     curl_close($ch);
@@ -73,8 +72,8 @@ if (empty($_REQUEST['action']) || $_REQUEST['action'] != 'FORM') {
         CURLOPT_FOLLOWLOCATION => true,
         CURLOPT_SSL_VERIFYPEER => false,
         CURLOPT_SSL_VERIFYHOST => false,
-        CURLOPT_COOKIEFILE => $cookie_filepath,
-        CURLOPT_COOKIEJAR => $cookie_filepath
+        CURLOPT_COOKIEFILE     => $cookie_filepath,
+        CURLOPT_COOKIEJAR      => $cookie_filepath,
     ]);
     $response = curl_exec($ch);
     curl_close($ch);
@@ -91,15 +90,15 @@ if (empty($_REQUEST['action']) || $_REQUEST['action'] != 'FORM') {
         CURLOPT_FOLLOWLOCATION => true,
         CURLOPT_SSL_VERIFYPEER => false,
         CURLOPT_SSL_VERIFYHOST => false,
-        CURLOPT_COOKIEFILE => $cookie_filepath,
-        CURLOPT_COOKIEJAR => $cookie_filepath
+        CURLOPT_COOKIEFILE     => $cookie_filepath,
+        CURLOPT_COOKIEJAR      => $cookie_filepath,
     ]);
     $response = curl_exec($ch);
     curl_close($ch);
     preg_match_all('/<tr id="listnode\d+" nodeid="\d+" itemid=".*?" type="file" itemname="(.*?)" extension="(.*?)" size="\d+" server="(.*?)"/', $response, $files);
     $files_list = [];
     for ($i = 0; $i < count($files[0]); $i++) {
-        $files_list[(function_exists('mb_strtolower') ? 'mb_strtolower' : 'strtolower')($files[1][$i] . '.' . $files[2][$i])] = $files[3][$i];
+        $files_list[(function_exists('mb_strtolower') ? 'mb_strtolower' : 'strtolower')($files[1][$i].'.'.$files[2][$i])] = $files[3][$i];
     }
     if (array_key_exists((function_exists('mb_strtolower') ? 'mb_strtolower' : 'strtolower')($lname), $files_list)) {
         $server = $files_list[(function_exists('mb_strtolower') ? 'mb_strtolower' : 'strtolower')($lname)];
@@ -118,8 +117,8 @@ if (empty($_REQUEST['action']) || $_REQUEST['action'] != 'FORM') {
         CURLOPT_FOLLOWLOCATION => true,
         CURLOPT_SSL_VERIFYPEER => false,
         CURLOPT_SSL_VERIFYHOST => false,
-        CURLOPT_COOKIEFILE => $cookie_filepath,
-        CURLOPT_COOKIEJAR => $cookie_filepath
+        CURLOPT_COOKIEFILE     => $cookie_filepath,
+        CURLOPT_COOKIEJAR      => $cookie_filepath,
     ]);
     $result = curl_exec($ch);
     curl_close($ch);
